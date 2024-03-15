@@ -55,7 +55,7 @@ router.post("/register",async(req,res)=>{
                     console.log("mail sent")
                 }
             })
-            return res.status(200).json({message:"Activation link sent to Mail",data:registeringUser})
+            return res.status(200).json({message:"Activation link sent to Mail"})
         }
     } catch (error) {
         console.log(error)
@@ -73,7 +73,7 @@ router.get("/activation/:id",async(req,res)=>{
             return res.status(200).json({message:"Activation Successfull"})
          }
         }
-   catch (error) {
+   catch (error) { 
         console.log(error)
         res.status(500).json({message:"Account activation failed"})
     }
@@ -93,7 +93,7 @@ router.post("/login",async(req,res)=>{
                 if(checkUser[0].status==="Active"){
                     //token is generated and passed as response
                     const token=generateToken(checkUser[0]._id);
-                    return res.status(200).json({message:"login success",token,data:checkUser})
+                    return res.status(200).json({message:"login success",token})
                 }else{
                     //if account is not active
                      //sending mail to activate account
@@ -179,16 +179,16 @@ router.post("/forgot",async(req,res)=>{
 //reset password
 router.post("/reset/:id",async(req,res)=>{
     try {
-          //finding user
-          const getUser=await findUsers(req.params.id);
-          //verifying token
-          const verify=jwt.verify(getUser[0].token,process.env.secret_key);
-          //encrypting user password
-          const salt=await bcrypt.genSalt(10);
-          const hashedPassword=await bcrypt.hash(req.body.password,salt);
-          //updating password
-          const updating=await updatingPassword(getUser[0]._id,hashedPassword);
-          return res.status(200).json({message:"Password Reset Successfull"});
+                            //finding user
+                            const getUser=await findUsers(req.params.id);
+                            //verifying token
+                            const verify=jwt.verify(getUser[0].token,process.env.secret_key);
+                            //encrypting user password
+                            const salt=await bcrypt.genSalt(10);
+                            const hashedPassword=await bcrypt.hash(req.body.password,salt);
+                            //updating password
+                            const updating=await updatingPassword(getUser[0]._id,hashedPassword);
+                            return res.status(200).json({message:"Password Reset Successfull"});
         }
    catch (error) {
         console.log(error)
@@ -300,8 +300,8 @@ router.post("/billProduct",isAuthorized,async(req,res)=>{
           //reducing the product quantity after billing by finding the productName and updating the fields
           billData.map((value,index)=>{
           originalData.find((value1,index1)=>{
-                if(value1.productName===value.productName){
-                    originalData[index1]={productName:value1.productName,productQuantity:value1.productQuantity-value.productQuantity,productPrice:value1.productPrice};
+                if(value1.description===value.productName){
+                    originalData[index1]={productName:value.productName,productQuantity:value1.quantity-value.productQuantity,productPrice:value.productPrice};
                     return true;//to stop search process
                 }
             })
