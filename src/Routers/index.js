@@ -93,7 +93,7 @@ router.post("/login",async(req,res)=>{
                 if(checkUser[0].status==="Active"){
                     //token is generated and passed as response
                     const token=generateToken(checkUser[0]._id);
-                    return res.status(200).json({message:"login success",token})
+                    return res.status(200).json({message:"login success",data:checkUser[0],token})
                 }else{
                     //if account is not active
                      //sending mail to activate account
