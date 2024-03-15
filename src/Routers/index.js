@@ -297,11 +297,13 @@ router.post("/billProduct",isAuthorized,async(req,res)=>{
           const findingUser=await findUsers(req.body.id);
           const originalData=findingUser[0].data;
           const billData=req.body.billData;
+          console.log(billData);
+          console.log(originalData);
           //reducing the product quantity after billing by finding the productName and updating the fields
           billData.map((value,index)=>{
           originalData.find((value1,index1)=>{
-                if(value1.description===value.productName){
-                    originalData[index1]={productName:value.productName,productQuantity:value1.quantity-value.productQuantity,productPrice:value.productPrice};
+                if(value1.productName===value.description){
+                    originalData[index1]={productName:value1.productName,productQuantity:value1.productQuantity-value.quantity,productPrice:value1.productPrice};
                     return true;//to stop search process
                 }
             })
