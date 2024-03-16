@@ -38,7 +38,7 @@ router.post("/register",async(req,res)=>{
                 to:registeringUser[0].email,
                 subject:"Account Activation Link",
                 html:`<h1>Inventory Management and Billing Application</h1>
-                <h2>Hi Fabian, click the below link to Activate your account</h2>
+                <h2>Hi ${registeringUser[0].name}, click the below link to Activate your account</h2>
                 <a href=${link}
                   ><button
                     style="
@@ -114,7 +114,7 @@ router.post("/login",async(req,res)=>{
                         to:checkUser[0].email,
                         subject:"Account Activation Link",
                         html:`<h1>Inventory Management and Billing Application</h1>
-                        <h2>Hi Fabian, click the below link to activation your account</h2>
+                        <h2>Hi ${checkUser[0].name}, click the below link to activation your account</h2>
                         <a href=${link}
                           ><button
                             style="
@@ -172,7 +172,7 @@ router.post("/forgot",async(req,res)=>{
                  to:findUser[0].email,
                  subject:"Password Reset Link",
                  html:`<h1>Inventory Management and Billing Application</h1>
-                 <h2>Hi Fabian, click the below link to reset your password</h2>
+                 <h2>Hi ${findUser[0].name}, click the below link to reset your password</h2>
                  <a href=${link}
                    ><button
                      style="
