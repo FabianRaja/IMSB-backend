@@ -313,7 +313,7 @@ router.post("/allProduct",isAuthorized,async(req,res)=>{
     try {
         //getting all product details by the unique user id
           const findingUser=await findUsers(req.body.id);
-          return res.status(200).json({message:"all product fetched Successfully",data:findingUser[0]?.data});
+          return res.status(200).json({message:"all product fetched Successfully",data:findingUser[0].data});
         }
    catch (error) {
         console.log(error)
