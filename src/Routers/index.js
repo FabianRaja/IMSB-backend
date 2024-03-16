@@ -37,14 +37,24 @@ router.post("/register",async(req,res)=>{
                 from:"fullstackpurpose@gmail.com",
                 to:registeringUser[0].email,
                 subject:"Account Activation Link",
-                html:`<a href=${link}><button style="background:violet;
-                color:black;
-                height:50px;
-                width:150px;
-                border:none;
-                border-radius:15px;
-                font-weight:bolder;
-                ">Click to Activate Account</button></a>
+                html:`<h1>Inventory Management and Billing Application</h1>
+                <h2>Hi Fabian, click the below link to Activate your account</h2>
+                <a href=${link}
+                  ><button
+                    style="
+                      background: #6f8ece;
+                      color: black;
+                      height: 50px;
+                      width: 250px;
+                      border: none;
+                      border-radius: 20px;
+                      font-weight: bolder;
+                    "
+                  >
+                    ACTIVATE ACCOUNT
+                  </button></a
+                >
+                <p>(If this is not initiated by yourself, Kindly avoid this mail...)
                 `
             }
             //creating transport to send mail
@@ -103,14 +113,24 @@ router.post("/login",async(req,res)=>{
                         from:"fullstackpurpose@gmail.com",
                         to:checkUser[0].email,
                         subject:"Account Activation Link",
-                        html:`<a href=${link}><button style="background:violet;
-                        color:black;
-                        height:50px;
-                        width:150px;
-                        border:none;
-                        border-radius:15px;
-                        font-weight:bolder;
-                        ">Click to Activate Account</button></a>
+                        html:`<h1>Inventory Management and Billing Application</h1>
+                        <h2>Hi Fabian, click the below link to activation your account</h2>
+                        <a href=${link}
+                          ><button
+                            style="
+                              background: #6f8ece;
+                              color: black;
+                              height: 50px;
+                              width: 250px;
+                              border: none;
+                              border-radius: 20px;
+                              font-weight: bolder;
+                            "
+                          >
+                            ACTIVATE ACCOUNT
+                          </button></a
+                        >
+                        <p>(If this is not initiated by yourself, Kindly avoid this mail...)
                         `
                     }
                     //creating transport to send mail
@@ -151,14 +171,24 @@ router.post("/forgot",async(req,res)=>{
                  from:"fullstackpurpose@gmail.com",
                  to:findUser[0].email,
                  subject:"Password Reset Link",
-                 html:`<a href=${link}><button style="background:violet;
-                 color:black;
-                 height:50px;
-                 width:150px;
-                 border:none;
-                 border-radius:15px;
-                 font-weight:bolder;
-                 ">Click to Reset Password</button></a>`
+                 html:`<h1>Inventory Management and Billing Application</h1>
+                 <h2>Hi Fabian, click the below link to reset your password</h2>
+                 <a href=${link}
+                   ><button
+                     style="
+                       background: #6f8ece;
+                       color: black;
+                       height: 50px;
+                       width: 250px;
+                       border: none;
+                       border-radius: 20px;
+                       font-weight: bolder;
+                     "
+                   >
+                     CLICK TO RESET PASSWORD
+                   </button></a
+                 >
+                 <p>(If this is not initiated by yourself, Kindly avoid this mail...)`
              }
              //creating transport to send mail
              transport.sendMail(composingMail,(error,info)=>{
@@ -220,7 +250,7 @@ router.post("/addProduct",isAuthorized,async(req,res)=>{
               }
               const data=(findUser[0].data).concat(newData);
               const findUserById=await addingProduct(findUser[0]._id,data);
-              return res.status(200).json({message:"Adding Product Successfull"});
+              return res.status(200).json({message:"Product Added Successfully"});
           }else{
              //finding the object data with the same product name and updating the object details
              checkingData.find((value,index)=>{
