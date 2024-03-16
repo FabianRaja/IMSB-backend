@@ -34,7 +34,7 @@ router.post("/register",async(req,res)=>{
             const link=`https://inventorymanagementandbilling.netlify.app/activation/${registeringUser[0]._id}`
             //composing mail
             const composingMail={
-                from:"fabianrajafernandofsd@gmail.com",
+                from:"fullstackpurpose@gmail.com",
                 to:registeringUser[0].email,
                 subject:"Account Activation Link",
                 html:`<h1>Inventory Management and Billing Application</h1>
@@ -110,7 +110,7 @@ router.post("/login",async(req,res)=>{
                     const link=`https://inventorymanagementandbilling.netlify.app/activation/${checkUser[0]._id}`
                     //composing mail
                     const composingMail={
-                        from:"fabianrajafernandofsd@gmail.com",
+                        from:"fullstackpurpose@gmail.com",
                         to:checkUser[0].email,
                         subject:"Account Activation Link",
                         html:`<h1>Inventory Management and Billing Application</h1>
@@ -168,7 +168,7 @@ router.post("/forgot",async(req,res)=>{
              const link=`https://inventorymanagementandbilling.netlify.app/reset/${findUser[0]._id}`
              //composing mail
              const composingMail={
-                 from:"fabianrajafernandofsd@gmail.com",
+                 from:"fullstackpurpose@gmail.com",
                  to:findUser[0].email,
                  subject:"Password Reset Link",
                  html:`<h1>Inventory Management and Billing Application</h1>
