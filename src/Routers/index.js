@@ -277,15 +277,15 @@ router.post("/editProduct",isAuthorized,async(req,res)=>{
         const data=findUser[0].data;
         //filtering the data to be updated and adding the updated object as a new data into the filteredData
         const filteredData=data.filter((value,index)=>value.productName!=req.body.oldProductName);
+        //creating new object and passing it to the filteredData
         const newData={
             productName:req.body.productName,
             productQuantity:req.body.productQuantity,
             productPrice:req.body.productPrice
         }
         filteredData.push(newData);
-        console.log(filteredData);
         const updatingData=await addingProduct(findUser[0]._id,filteredData)
-          return res.status(200).json({message:"Product Updated Successfull"});
+        return res.status(200).json({message:"Product Updated Successfull"});
         }
    catch (error) {
         console.log(error)
@@ -300,6 +300,7 @@ router.post("/deleteProduct",isAuthorized,async(req,res)=>{
           const data=findUser[0].data;
           //filtering data and delete the object
           const filteredData=data.filter((value,index)=>value.productName!=req.body.productName);
+          //updating the remaining data 
           const updatingData=await addingProduct(findUser[0]._id,filteredData)
           return res.status(200).json({message:"Product Deleted Successfull"});
         }
@@ -328,8 +329,6 @@ router.post("/billProduct",isAuthorized,async(req,res)=>{
           const findingUser=await findUsers(req.body.id);
           const originalData=findingUser[0].data;
           const billData=req.body.billData;
-          console.log(billData);
-          console.log(originalData);
           //reducing the product quantity after billing by finding the productName and updating the fields
           billData.map((value,index)=>{
           originalData.find((value1,index1)=>{
@@ -340,7 +339,7 @@ router.post("/billProduct",isAuthorized,async(req,res)=>{
             })
       
           })
-            
+        //updating the product
          const updatingProduct=await addingProduct(req.body.id,originalData)
 
        res.status(200).json({message:"bill processed Successfully"});
