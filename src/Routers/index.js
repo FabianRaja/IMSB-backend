@@ -38,7 +38,7 @@ router.post("/register",async(req,res)=>{
                 to:registeringUser[0].email,
                 subject:"Account Activation Link",
                 html:`<h1>Inventory Management and Billing Application</h1>
-                <h2>Hi ${registeringUser[0].name}, click the below link to Activate your account</h2>
+                <h2>Hi, click the below link to Activate your account</h2>
                 <a href=${link}
                   ><button
                     style="
@@ -101,6 +101,7 @@ router.post("/login",async(req,res)=>{
             if(validatingPassword){
                 //checking if account is active or not
                 if(checkUser[0].status==="Active"){
+                    
                     //token is generated and passed as response
                     const token=generateToken(checkUser[0]._id);
                     return res.status(200).json({message:"login success",data:checkUser[0],token})
@@ -114,7 +115,7 @@ router.post("/login",async(req,res)=>{
                         to:checkUser[0].email,
                         subject:"Account Activation Link",
                         html:`<h1>Inventory Management and Billing Application</h1>
-                        <h2>Hi ${checkUser[0].name}, click the below link to activation your account</h2>
+                        <h2>Hi, click the below link to activation your account</h2>
                         <a href=${link}
                           ><button
                             style="
@@ -172,7 +173,7 @@ router.post("/forgot",async(req,res)=>{
                  to:findUser[0].email,
                  subject:"Password Reset Link",
                  html:`<h1>Inventory Management and Billing Application</h1>
-                 <h2>Hi ${findUser[0].name}, click the below link to reset your password</h2>
+                 <h2>Hi, click the below link to reset your password</h2>
                  <a href=${link}
                    ><button
                      style="
