@@ -2,7 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 import addingUsers, { activation, addingProduct, findUsers, findingUsers, forgotToken, updatingPassword } from "../Controllers/index.js";
-import { generateExpiryToken, generateToken, isAuthorized } from "../Authorization/auth.js";
+import { generateExpiryToken, generateToken, isAuthorized, isAuthorizedLogin } from "../Authorization/auth.js";
 import { transport } from "../Mailer/nodeMailer.js";
 
 //initializing router
@@ -89,7 +89,7 @@ router.get("/activation/:id",async(req,res)=>{
     }
 })
 //login User
-router.post("/login",async(req,res)=>{
+router.post("/login",isAuthorizedLogin,async(req,res)=>{
     try {
         //checking is user email is registered 
         const checkUser=await findingUsers(req.body.email);
